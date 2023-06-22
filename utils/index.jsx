@@ -15,7 +15,7 @@ const header = {
 
 export default async function fetchRecipes(query) {
   const response = await fetch(
-    `https://api.api-ninjas.com/v1/recipe?query=pizza`,
+    `https://api.api-ninjas.com/v1/recipe?query=${query || "pancakes"}`,
     header
   );
 

@@ -1,14 +1,32 @@
 "use client";
-import { queryAdd } from "@/store/recipes/recipeSlice";
 import Image from "next/image";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useRouter } from "next/navigation";
 
 export default function Main() {
   const [query, setQuery] = useState("");
-  const dispatch = useDispatch();
+  const router = useRouter();
 
-  const handleQuery = () => dispatch(queryAdd(query));
+  const handleSearch = () => {
+    updateParams(query);
+    setQuery("");
+  };
+
+  const updateParams = (query) => {
+    const searchParams = new URLSearchParams(window.location.search);
+
+    if (query) {
+      searchParams.set("query", query);
+    } else {
+      searchParams.delete("query");
+    }
+
+    const newSeachQuery = `
+      ${window.location.pathname}?${searchParams.toString()}
+    `;
+
+    router.push(newSeachQuery);
+  };
 
   return (
     <div className="w-full">
@@ -43,7 +61,7 @@ export default function Main() {
             height={30}
             alt="search"
             className="object-contain absolute top-[5px] right-0 mr-3 cursor-pointer"
-            onClick={handleQuery}
+            onClick={handleSearch}
           />
         </div>
       </div>

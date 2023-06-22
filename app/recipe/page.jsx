@@ -2,7 +2,6 @@
 
 import { useSelector } from "react-redux";
 import { Rating } from "@mui/material";
-import { AiOutlineHeart } from "react-icons/ai";
 
 import { selectRecipeItems } from "@/store/recipes/recipeSelector";
 
@@ -33,10 +32,6 @@ export default function Recipe() {
             </span>
           </span>
           <small className="font-semibold">1200 Avaliations</small>
-          <button className="font-semibold flex items-center gap-x-2">
-            {" "}
-            <AiOutlineHeart className="text-2xl" /> Favorite
-          </button>
         </div>
       </div>
       <div className="w-full px-10 lg:px-96">
