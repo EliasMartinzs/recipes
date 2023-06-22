@@ -36,14 +36,6 @@ export default function Recipe() {
         </div>
       </div>
       <div className="w-full px-10 lg:px-96">
-        <iframe
-          className="w-full h-64 lg:h-[35rem]"
-          src={src}
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen
-        />
         <div className="flex flex-col items-start justify-start mt-10">
           <h3 className=" w-full bg-slate-100 py-2 text-2xl font-semibold text-gray-700">
             Ingredients

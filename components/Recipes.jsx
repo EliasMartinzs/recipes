@@ -1,3 +1,4 @@
+import { FetchYoutubeSearch } from "@/utils";
 import RecipeCard from "./RecipeCard";
 
 export default async function Recipes({ recipes, query }) {

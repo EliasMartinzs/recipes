@@ -7,8 +7,6 @@ import RecipeCard from "@/components/RecipeCard";
 export default function Favorites() {
   const favorites = useSelector(selectFavorites);
 
-  console.log(favorites);
-
   return (
     <div className="w-full flex flex-col lg:grid grid-cols-3 px-10 mx-auto gap-2 ">
       {favorites &&

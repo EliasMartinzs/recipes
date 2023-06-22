@@ -10,8 +10,6 @@ import {
 import { AiOutlineHeart, AiOutlineMinus } from "react-icons/ai";
 
 export default function RecipeCard({ recipe }) {
-  const src = "https://www.youtube.com/embed/7mfKaXOHp5g";
-
   const dispatch = useDispatch();
 
   const recipePage = () => dispatch(recipeAdd(recipe));
@@ -23,14 +21,6 @@ export default function RecipeCard({ recipe }) {
       className="flex flex-col items-center justify-center border-b p-10"
       key={recipe.title}
     >
-      <iframe
-        src={src}
-        title="YouTube video player"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen
-        className="rounded-xl mb-5 w-96 h-64"
-      />
       <h2 className="text-xl font-extralight border-b">{recipe.title}</h2>
       <div className="w-1/2 flex items-center justify-between">
         <Link
