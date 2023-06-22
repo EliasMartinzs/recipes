@@ -11,6 +11,7 @@ export default function Recipe() {
 
   const recipe = [];
   recipe.push(items);
+  console.log(recipe);
 
   return (
     <div className="w-full flex flex-col">

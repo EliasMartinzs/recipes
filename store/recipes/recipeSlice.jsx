@@ -1,37 +1,29 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const INITIAL_STATE = {
+  favoritesItems: [],
   recipeItems: [],
   query: "",
-  favorites: [],
 };
 
-const favoritesItems = (favoritesItem, favoritesToAdd) => {
-  const existingItem = favoritesItem.find(
-    (item) => item.title === favoritesToAdd.title
-  );
+const addFavoriteItem = (state, payload) => {
+  const existing = state.find((item) => item.title === payload.title);
 
-  if (existingItem) {
-    return favoritesItem.map((item) => item.title === favoritesToAdd.title)
-      ? { ...favoritesItem, quantity: item.quantity + 1 }
-      : favoritesItem;
+  if (existing) {
+    return state.map((item) =>
+      item.title === payload.title ? { ...state } : payload
+    );
   }
 
-  return [...favoritesItem, { ...favoritesToAdd, quantity: 1 }];
+  return [...state, { ...payload }];
 };
 
-const favoritesItemsRemove = (favoritesItem, favoritesRemove) => {
-  const existingItem = favoritesItem.find(
-    (item) => item.title === favoritesRemove.title
-  );
+const removeFavoriteItem = (state, payload) => {
+  const existing = state.find((item) => item.title === payload.title);
 
-  if (existingItem.quantity === 1) {
-    return favoritesItem.filter((item) => item.title !== favoritesRemove.title);
+  if (existing) {
+    return state.filter((item) => item.title !== payload.title);
   }
-
-  return favoritesItem.map((item) => item.title === favoritesRemove.title)
-    ? { ...favoritesItem, quantity: item.quantity - 1 }
-    : favoritesItem;
 };
 
 const recipeSlice = createSlice({
@@ -45,10 +37,16 @@ const recipeSlice = createSlice({
       state.query = action.payload;
     },
     favoritesAdd(state, action) {
-      state.favorites = favoritesItems(state.favorites, action.payload);
+      state.favoritesItems = addFavoriteItem(
+        state.favoritesItems,
+        action.payload
+      );
     },
     favoritesRemove(state, action) {
-      state.favorites = favoritesItemsRemove(state.favorites, action.payload);
+      state.favoritesItems = removeFavoriteItem(
+        state.favoritesItems,
+        action.payload
+      );
     },
   },
 });
